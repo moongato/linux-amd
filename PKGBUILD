@@ -5,14 +5,14 @@ pkgbase=linux-amd
 _srcname=linux
 gitver=v5.6.14
 pkgver=5.6.14
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
-_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.200.patch
-#_bmq_patch="bmq_v5.6-r4.patch"
+#_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.200.patch
+_bmq_patch="bmq_v5.6-r4.patch"
 _fsgsbase_path=fsgsbase-patches-v2
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 source=(
@@ -24,9 +24,9 @@ source=(
 	# gcc patch
 	enable_additional_cpu_optimizations_for_gcc_v9.1+.patch
         # muqss patch
-        http://ck.kolivas.org/patches/muqss/5.0/5.6/${_muqss_patch}
+        #http://ck.kolivas.org/patches/muqss/5.0/5.6/${_muqss_patch}
         # bmq patch
-        #https://gitlab.com/alfredchen/bmq/raw/master/5.6/${_bmq_patch}
+        https://gitlab.com/alfredchen/bmq/raw/master/5.6/${_bmq_patch}
         # fsgs patch
         https://github.com/sirlucjan/kernel-patches/raw/master/5.6/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
@@ -34,15 +34,15 @@ source=(
 )
 sha256sums=('SKIP'
             # config
-            'ac06c18baaa9bb1ab667fc08c318c6760f079dbb7d4b858c6148a2a631a474f0'
+            'faa31e46ea24b365c97e24a5b41fd12256ce8d32063ad9a145ce067248a36adb'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
             'cc739c9c9f7ce08e6bbc161b8232208bbc00820342a32fb1f69bff6326ae1370'
             # muqss patch
-            'dd0e36115de8a32c08e7e39b3c76a77de6c34aee7e72b72308fc395c7e37744d'
+            #'dd0e36115de8a32c08e7e39b3c76a77de6c34aee7e72b72308fc395c7e37744d'
             # bmq patch
-            #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
+            '1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
             # fsgs patch
             'b9bfef82699d986fd0a5845296bbae5b4ce371472a069b92cf0dca1b44f16cd5'
             # O3 patch
