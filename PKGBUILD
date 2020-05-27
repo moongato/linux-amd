@@ -34,7 +34,7 @@ source=(
 )
 sha256sums=('SKIP'
             # config
-            'ac06c18baaa9bb1ab667fc08c318c6760f079dbb7d4b858c6148a2a631a474f0'
+            'fe26a00ecc46ceffb7fefcf0aa083f386d723ae7836a380b4529e3cdf87b8547'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
@@ -100,7 +100,7 @@ build() {
   cd "${_srcname}"
 
   #Force zen architecture optimisation.
-  export CFLAGS="-march=znver1 -mtune=znver1 -O3 -pipe -fstack-protector-strong"
+  export CFLAGS="-march=amdfam10 -mtune=amdfam10 -O3 -pipe -fstack-protector-strong"
   export CXXFLAGS="${CFLAGS}"
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
