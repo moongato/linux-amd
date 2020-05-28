@@ -34,7 +34,7 @@ source=(
 )
 sha256sums=('SKIP'
             # config
-            'ac06c18baaa9bb1ab667fc08c318c6760f079dbb7d4b858c6148a2a631a474f0'
+            'e2d780751faa343c3ef7c9fc4a521a42565b3a13dc48bb4f40180b0f06c924d4'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
