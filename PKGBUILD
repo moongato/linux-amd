@@ -5,7 +5,7 @@ pkgbase=linux-amd
 _srcname=linux
 gitver=v5.6.15
 pkgver=5.6.15
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -13,7 +13,7 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 #_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.200.patch
 _bmq_patch="bmq_v5.6-r4.patch"
-_fsgsbase_path=fsgsbase-patches-v2
+_fsgsbase_path=fsgsbase-patches-v3
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 source=(
         'git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
@@ -34,9 +34,9 @@ source=(
 )
 sha256sums=('SKIP'
             # config
-            'faa31e46ea24b365c97e24a5b41fd12256ce8d32063ad9a145ce067248a36adb'
+            'c9fd290d078f07c2cdf0c0d1281077204645dae881ce5bacf1bdfc6012f3afcf'
             # .preset file
-            '1655baf3f280a94f905c7febea7f1a3088b7800c05c0df277205cf6d64fd0211'
+            '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
             'cc739c9c9f7ce08e6bbc161b8232208bbc00820342a32fb1f69bff6326ae1370'
             # muqss patch
@@ -44,7 +44,7 @@ sha256sums=('SKIP'
             # bmq patch
             '1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
             # fsgs patch
-            'b9bfef82699d986fd0a5845296bbae5b4ce371472a069b92cf0dca1b44f16cd5'
+            'd091557b7172da982dbf2f2d6eb95e41f43dbdce5b34068dcb520516186c2d79'
             # O3 patch
             '99a070f8cbcf3312d09abe5cfd833a80797d0c5be574858317f70ca605dd57c2'
 )
