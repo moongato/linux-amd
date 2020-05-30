@@ -22,7 +22,7 @@ source=(
         # standard config files for mkinitcpio ramdisk
         "${pkgbase}.preset"
 	# gcc patch
-	enable_additional_cpu_optimizations_for_gcc_v9.1+.patch
+	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.5-v5.6.patch
         # muqss patch
         http://ck.kolivas.org/patches/muqss/5.0/5.6/${_muqss_patch}
         # bmq patch
@@ -34,11 +34,11 @@ source=(
 )
 sha256sums=('SKIP'
             # config
-            'e2d780751faa343c3ef7c9fc4a521a42565b3a13dc48bb4f40180b0f06c924d4'
+            'cd82bcc8a154d5e02d99735f25e168c00c1d634b06242ad97f277f61389eb324'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
-            'cc739c9c9f7ce08e6bbc161b8232208bbc00820342a32fb1f69bff6326ae1370'
+            '91b8ccd2b8b6cee055436c079f80c535050e5bfb2d4607541327459915c0d7ed'
             # muqss patch
             'dd0e36115de8a32c08e7e39b3c76a77de6c34aee7e72b72308fc395c7e37744d'
             # bmq patch
