@@ -3,17 +3,17 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.6.15
-pkgver=5.6.15
-pkgrel=2
+gitver=v5.7
+pkgver=5.7.0
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
-_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.200.patch
-#_bmq_patch="bmq_v5.6-r4.patch"
-_fsgsbase_path=fsgsbase-patches-v3
+#_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.200.patch
+_bmq_patch=0001-BMQ-tkg-v5.7-r0.patch
+_fsgsbase_path=fsgsbase-patches
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 source=(
         'git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
@@ -22,31 +22,32 @@ source=(
         # standard config files for mkinitcpio ramdisk
         "${pkgbase}.preset"
 	# gcc patch
-	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.5-v5.6.patch
+	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.7+.patch
         # muqss patch
-        http://ck.kolivas.org/patches/muqss/5.0/5.6/${_muqss_patch}
+        #http://ck.kolivas.org/patches/muqss/5.0/5.6/${_muqss_patch}
         # bmq patch
-        #https://gitlab.com/alfredchen/bmq/raw/master/5.6/${_bmq_patch}
+        #https://gitlab.com/alfredchen/bmq/raw/master/5.7/${_bmq_patch}
+        $_bmq_patch
         # fsgs patch
-        https://github.com/sirlucjan/kernel-patches/raw/master/5.6/${_fsgsbase_path}/${_fsgsbase_patch}
+        https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
 )
 sha256sums=('SKIP'
             # config
-            'cd82bcc8a154d5e02d99735f25e168c00c1d634b06242ad97f277f61389eb324'
+            'a67e1878d4d527e02d7064942daedb7827b456d75d475fde626c06cb4f7a4775'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
-            '91b8ccd2b8b6cee055436c079f80c535050e5bfb2d4607541327459915c0d7ed'
+            '0ff24d6c053d23e06b1aceb654100a5d0a14f57f2ba7b65ff84d5a9448f0798c'
             # muqss patch
-            'dd0e36115de8a32c08e7e39b3c76a77de6c34aee7e72b72308fc395c7e37744d'
+            #'dd0e36115de8a32c08e7e39b3c76a77de6c34aee7e72b72308fc395c7e37744d'
             # bmq patch
-            #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
+            'caa913c79901b9564368afb396674c8599504fcdc02b960f317ab823ce0a654d'
             # fsgs patch
-            'd091557b7172da982dbf2f2d6eb95e41f43dbdce5b34068dcb520516186c2d79'
+            '2fc02012f9c9e65a01068c246912786b80174c1c3089a46730f7b0560ed73209'
             # O3 patch
-            '99a070f8cbcf3312d09abe5cfd833a80797d0c5be574858317f70ca605dd57c2'
+            'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
 )
 
 _kernelname=${pkgbase#linux}
