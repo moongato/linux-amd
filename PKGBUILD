@@ -15,6 +15,7 @@ options=('!strip')
 _bmq_patch=0001-BMQ-tkg-v5.7-r0.patch
 _fsgsbase_path=fsgsbase-patches
 _fsgsbase_patch=0001-fsgsbase-patches.patch
+_uksm_patch=uksm-5.7.patch
 source=(
         'git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
         # the main kernel config files
@@ -32,10 +33,12 @@ source=(
         https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
+        # uksm patch
+        https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
 )
 sha256sums=('SKIP'
             # config
-            '19a91cc3cd1cc915da940b2d3609fea87566c8a946dfc2239146c76f9e20da89'
+            '9585b68a566dd9193ec7f6e3cb2f59d9e271c787b9ff7f8257a9fa0e304e5f86'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
@@ -48,6 +51,8 @@ sha256sums=('SKIP'
             '2fc02012f9c9e65a01068c246912786b80174c1c3089a46730f7b0560ed73209'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
+            # uksm patch
+            'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
 )
 
 _kernelname=${pkgbase#linux}
