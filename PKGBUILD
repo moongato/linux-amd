@@ -3,18 +3,19 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.6.15
-pkgver=5.6.15
-pkgrel=2
+gitver=v5.7.2
+pkgver=5.7.2
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
-_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.200.patch
+_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
 #_bmq_patch="bmq_v5.6-r4.patch"
-_fsgsbase_path=fsgsbase-patches-v3
+_fsgsbase_path=fsgsbase-patches
 _fsgsbase_patch=0001-fsgsbase-patches.patch
+_uksm_patch=uksm-5.7.patch
 source=(
         'git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
         # the main kernel config files
@@ -22,31 +23,39 @@ source=(
         # standard config files for mkinitcpio ramdisk
         "${pkgbase}.preset"
 	# gcc patch
-	enable_additional_cpu_optimizations_for_gcc_v9.1+.patch
+	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.7+.patch
         # muqss patch
-        http://ck.kolivas.org/patches/muqss/5.0/5.6/${_muqss_patch}
+        http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
         # bmq patch
         #https://gitlab.com/alfredchen/bmq/raw/master/5.6/${_bmq_patch}
         # fsgs patch
-        https://github.com/sirlucjan/kernel-patches/raw/master/5.6/${_fsgsbase_path}/${_fsgsbase_patch}
+        https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
+        # uksm patch
+        https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
+        # unfuck muqss
+          "unfuck-ck1.patch::https://github.com/ckolivas/linux/commit/0b69e633d6b0b08ae8547dc4099c8c0985019553.patch"
 )
 sha256sums=('SKIP'
             # config
-            'a9624a33c1003552ef01a58998905022359b6b8e02e4a27919bfdd396433d972'
+            '0e95960a5c158cdec122d6daec4585afe4ea84b5ebfc995e1db18d21e35c1c77'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
-            'cc739c9c9f7ce08e6bbc161b8232208bbc00820342a32fb1f69bff6326ae1370'
+            '0ff24d6c053d23e06b1aceb654100a5d0a14f57f2ba7b65ff84d5a9448f0798c'
             # muqss patch
-            'dd0e36115de8a32c08e7e39b3c76a77de6c34aee7e72b72308fc395c7e37744d'
+            '8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # bmq patch
             #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
             # fsgs patch
-            'd091557b7172da982dbf2f2d6eb95e41f43dbdce5b34068dcb520516186c2d79'
+            '2fc02012f9c9e65a01068c246912786b80174c1c3089a46730f7b0560ed73209'
             # O3 patch
-            '99a070f8cbcf3312d09abe5cfd833a80797d0c5be574858317f70ca605dd57c2'
+            'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
+            # uksm patch
+            'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
+            # unfuck muqss
+            '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328' 
 )
 
 _kernelname=${pkgbase#linux}
@@ -222,30 +231,6 @@ _package-headers() {
   mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/net/mac80211/"
   cp net/mac80211/*.h "${pkgdir}/usr/lib/modules/${_kernver}/build/net/mac80211/"
 
-  # add dvb headers for http://mcentral.de/hg/~mrec/em28xx-new
-  # in reference to:
-  # http://bugs.archlinux.org/task/13146
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/dvb-frontends/"
-  cp drivers/media/dvb-frontends/lgdt330x.h "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/dvb-frontends/"
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/i2c/"
-  cp drivers/media/i2c/msp3400-driver.h "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/i2c/"
-
-  # add dvb headers
-  # in reference to:
-  # http://bugs.archlinux.org/task/20402
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/usb/dvb-usb"
-  cp drivers/media/usb/dvb-usb/*.h "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/usb/dvb-usb/"
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/dvb-frontends"
-  cp drivers/media/dvb-frontends/*.h "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/dvb-frontends/"
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/tuners"
-  cp drivers/media/tuners/*.h "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/tuners/"
-
-  # add xfs and shmem for aufs building
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/fs/xfs"
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/mm"
-  # removed in 3.17 series
-  # cp fs/xfs/xfs_sb.h "${pkgdir}/usr/lib/modules/${_kernver}/build/fs/xfs/xfs_sb.h"
-
   # copy in Kconfig files
   for i in $(find . -name "Kconfig*"); do
     mkdir -p "${pkgdir}"/usr/lib/modules/${_kernver}/build/`echo ${i} | sed 's|/Kconfig.*||'`
@@ -278,10 +263,8 @@ _package-headers() {
   # remove unneeded architectures
   rm -rf "${pkgdir}"/usr/lib/modules/${_kernver}/build/arch/{alpha,arc,arm,arm26,arm64,avr32,blackfin,c6x,cris,frv,h8300,hexagon,ia64,m32r,m68k,m68knommu,metag,mips,microblaze,mn10300,openrisc,parisc,powerpc,ppc,s390,score,sh,sh64,sparc,sparc64,tile,unicore32,um,v850,xtensa}
 
-  #Fix build modules for dkms -- Seems to be fixed in this version!
-  #cp "arch/x86/kernel/macros.s" "${pkgdir}/usr/lib/modules/${_kernver}/build/arch/x86/kernel/."
-  #mkdir -p ${pkgdir}/usr/src/
-  #ln -s "../lib/modules/${_kernver}/build/" "${pkgdir}/usr/src/${_kernver}"
+  #Fix missing vdso files after overhaul
+  cp -r "include/vdso/" "${pkgdir}/usr/lib/modules/${_kernver}/build/include/"
 }
 
 pkgname=("${pkgbase}" "${pkgbase}-headers")
