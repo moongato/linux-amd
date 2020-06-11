@@ -3,9 +3,9 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.1
-pkgver=5.7.1
-pkgrel=3
+gitver=v5.7.2
+pkgver=5.7.2
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -34,6 +34,8 @@ source=(
         0001-init-Kconfig-enable-O3-for-all-arches.patch
         # uksm patch
         https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
+        # unfuck muqss
+          "unfuck-ck1.patch::https://github.com/ckolivas/linux/commit/0b69e633d6b0b08ae8547dc4099c8c0985019553.patch"
 )
 sha256sums=('SKIP'
             # config
@@ -52,6 +54,8 @@ sha256sums=('SKIP'
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
             # uksm patch
             'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
+            # unfuck muqss
+            '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328' 
 )
 
 _kernelname=${pkgbase#linux}
