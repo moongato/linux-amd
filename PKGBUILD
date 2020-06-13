@@ -3,16 +3,16 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.1
-pkgver=5.7.1
-pkgrel=2
+gitver=v5.7.2
+pkgver=5.7.2
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
-#_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.200.patch
-_bmq_patch=0001-BMQ-tkg-v5.7-r0.patch
+_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
+#_bmq_patch="bmq_v5.6-r4.patch"
 _fsgsbase_path=fsgsbase-patches
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 _uksm_patch=uksm-5.7.patch
@@ -25,34 +25,41 @@ source=(
 	# gcc patch
 	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.7+.patch
         # muqss patch
-        #http://ck.kolivas.org/patches/muqss/5.0/5.6/${_muqss_patch}
+        http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
         # bmq patch
         #https://gitlab.com/alfredchen/bmq/raw/master/5.7/${_bmq_patch}
-        $_bmq_patch
         # fsgs patch
         https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
         # uksm patch
         https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
+        # unfuck muqss
+          "unfuck-ck1.patch::https://github.com/ckolivas/linux/commit/0b69e633d6b0b08ae8547dc4099c8c0985019553.patch"
+        # archlinux patch
+        0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
 )
 sha256sums=('SKIP'
             # config
-            '59d33dc6b8afe046948409d2b5e83a325a0c2549f0ff77ab6fd64f525186f910'
+            '0e95960a5c158cdec122d6daec4585afe4ea84b5ebfc995e1db18d21e35c1c77'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
             '0ff24d6c053d23e06b1aceb654100a5d0a14f57f2ba7b65ff84d5a9448f0798c'
             # muqss patch
-            #'dd0e36115de8a32c08e7e39b3c76a77de6c34aee7e72b72308fc395c7e37744d'
+            '8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # bmq patch
-            'caa913c79901b9564368afb396674c8599504fcdc02b960f317ab823ce0a654d'
+            #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
             # fsgs patch
             '2fc02012f9c9e65a01068c246912786b80174c1c3089a46730f7b0560ed73209'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
             # uksm patch
             'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
+            # unfuck muqss
+            '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328'
+            # archlinux patch
+            '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
 )
 
 _kernelname=${pkgbase#linux}
