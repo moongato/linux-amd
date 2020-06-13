@@ -12,7 +12,7 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 #_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.200.patch
-_bmq_patch=0001-BMQ-tkg-v5.7-r0.patch
+_bmq_patch=bmq_v5.7-r1.patch
 _fsgsbase_path=fsgsbase-patches
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 _uksm_patch=uksm-5.7.patch
@@ -27,8 +27,7 @@ source=(
         # muqss patch
         #http://ck.kolivas.org/patches/muqss/5.0/5.6/${_muqss_patch}
         # bmq patch
-        #https://gitlab.com/alfredchen/bmq/raw/master/5.7/${_bmq_patch}
-        $_bmq_patch
+        https://gitlab.com/alfredchen/bmq/raw/master/5.7/${_bmq_patch}
         # fsgs patch
         https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
@@ -48,7 +47,7 @@ sha256sums=('SKIP'
             # muqss patch
             #'dd0e36115de8a32c08e7e39b3c76a77de6c34aee7e72b72308fc395c7e37744d'
             # bmq patch
-            'caa913c79901b9564368afb396674c8599504fcdc02b960f317ab823ce0a654d'
+            '9cf60ec74848ef807fc97e1c0f4bccca73ec65763a2adefa6758a4f7c0f243a7'
             # fsgs patch
             '2fc02012f9c9e65a01068c246912786b80174c1c3089a46730f7b0560ed73209'
             # O3 patch
