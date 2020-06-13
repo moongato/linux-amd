@@ -36,6 +36,8 @@ source=(
         https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
         # unfuck muqss
           "unfuck-ck1.patch::https://github.com/ckolivas/linux/commit/0b69e633d6b0b08ae8547dc4099c8c0985019553.patch"
+        # arch patch
+        0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
 )
 sha256sums=('SKIP'
             # config
@@ -55,7 +57,9 @@ sha256sums=('SKIP'
             # uksm patch
             'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
             # unfuck muqss
-            '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328' 
+            '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328'
+            # arch patch
+            '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6' 
 )
 
 _kernelname=${pkgbase#linux}
