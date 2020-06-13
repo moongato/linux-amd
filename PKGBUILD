@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.1
-pkgver=5.7.1
+gitver=v5.7.2
+pkgver=5.7.2
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -15,6 +15,7 @@ options=('!strip')
 _bmq_patch=0001-BMQ-tkg-v5.7-r0.patch
 _fsgsbase_path=fsgsbase-patches
 _fsgsbase_patch=0001-fsgsbase-patches.patch
+_uksm_patch=uksm-5.7.patch
 source=(
         'git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
         # the main kernel config files
@@ -32,6 +33,10 @@ source=(
         https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
+        # uksm patch
+        https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
+        # archlinux patch
+        0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
 )
 sha256sums=('SKIP'
             # config
@@ -48,6 +53,10 @@ sha256sums=('SKIP'
             '2fc02012f9c9e65a01068c246912786b80174c1c3089a46730f7b0560ed73209'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
+            # uksm patch
+            'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
+            # archlinux patch
+            '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6' 
 )
 
 _kernelname=${pkgbase#linux}
