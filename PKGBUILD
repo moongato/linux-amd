@@ -34,6 +34,8 @@ source=(
         0001-init-Kconfig-enable-O3-for-all-arches.patch
         # uksm patch
         https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
+        # archlinux patch
+        0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
 )
 sha256sums=('SKIP'
             # config
@@ -52,6 +54,8 @@ sha256sums=('SKIP'
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
             # uksm patch
             'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
+            # archlinux patch
+            '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6' 
 )
 
 _kernelname=${pkgbase#linux}
