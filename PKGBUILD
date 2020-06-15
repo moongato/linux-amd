@@ -45,7 +45,7 @@ sha256sums=('SKIP'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
-            '0ff24d6c053d23e06b1aceb654100a5d0a14f57f2ba7b65ff84d5a9448f0798c'
+            '1f56a2466bd9b4477925682d8f944fabb38727140e246733214fe50aa326fc47'
             # muqss patch
             '8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # bmq patch
