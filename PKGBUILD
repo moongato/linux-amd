@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.2
-pkgver=5.7.2
+gitver=v5.7.4
+pkgver=5.7.4
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -27,7 +27,7 @@ source=(
         # muqss patch
         http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
         # bmq patch
-        #https://gitlab.com/alfredchen/bmq/raw/master/5.6/${_bmq_patch}
+        #https://gitlab.com/alfredchen/bmq/raw/master/5.7/${_bmq_patch}
         # fsgs patch
         https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
@@ -36,7 +36,7 @@ source=(
         https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
         # unfuck muqss
           "unfuck-ck1.patch::https://github.com/ckolivas/linux/commit/0b69e633d6b0b08ae8547dc4099c8c0985019553.patch"
-        # arch patch
+        # archlinux patch
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
 )
 sha256sums=('SKIP'
@@ -45,7 +45,7 @@ sha256sums=('SKIP'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
-            '0ff24d6c053d23e06b1aceb654100a5d0a14f57f2ba7b65ff84d5a9448f0798c'
+            '1f56a2466bd9b4477925682d8f944fabb38727140e246733214fe50aa326fc47'
             # muqss patch
             '8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # bmq patch
@@ -58,8 +58,8 @@ sha256sums=('SKIP'
             'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
             # unfuck muqss
             '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328'
-            # arch patch
-            '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6' 
+            # archlinux patch
+            '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
 )
 
 _kernelname=${pkgbase#linux}
