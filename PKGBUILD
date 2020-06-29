@@ -5,7 +5,7 @@ pkgbase=linux-amd
 _srcname=linux
 gitver=v5.7.6
 pkgver=5.7.6
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -13,7 +13,7 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 _muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
 #_bmq_patch="bmq_v5.6-r4.patch"
-_fsgsbase_path=fsgsbase-patches-v4
+_fsgsbase_path=fsgsbase-patches-v5
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 _uksm_patch=uksm-5.7.patch
 source=(
@@ -52,7 +52,7 @@ sha256sums=('SKIP'
             # bmq patch
             #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
             # fsgs patch
-            'f688befbe969cabbc8efa73442051526502007f8c17481dd5bd17fb76374703e'
+            '2e0e8413302c2b6cd4e7ee6960198eb0cd9cc3e80c52b6f14054a196f0f48984'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
             # uksm patch
