@@ -3,9 +3,9 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.4
-pkgver=5.7.4
-pkgrel=1
+gitver=v5.7.6
+pkgver=5.7.6
+pkgrel=3
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -13,7 +13,7 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 _muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
 #_bmq_patch="bmq_v5.6-r4.patch"
-_fsgsbase_path=fsgsbase-patches
+_fsgsbase_path=fsgsbase-patches-v5
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 _uksm_patch=uksm-5.7.patch
 source=(
@@ -36,8 +36,9 @@ source=(
         https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
         # unfuck muqss
           "unfuck-ck1.patch::https://github.com/ckolivas/linux/commit/0b69e633d6b0b08ae8547dc4099c8c0985019553.patch"
-        # archlinux patch
+        # archlinux patches
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
+        0002-efi-libstub-Fix-path-separator-regression.patch
 )
 sha256sums=('SKIP'
             # config
@@ -51,15 +52,16 @@ sha256sums=('SKIP'
             # bmq patch
             #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
             # fsgs patch
-            '2fc02012f9c9e65a01068c246912786b80174c1c3089a46730f7b0560ed73209'
+            '2e0e8413302c2b6cd4e7ee6960198eb0cd9cc3e80c52b6f14054a196f0f48984'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
             # uksm patch
             'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
             # unfuck muqss
             '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328'
-            # archlinux patch
+            # archlinux patches
             '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
+            '6576ee1bf82c8d78b9e60b48fadc6b875cf9473917e57282db2fa6c6047548e9'
 )
 
 _kernelname=${pkgbase#linux}
