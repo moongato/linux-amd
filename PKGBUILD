@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.7
-pkgver=5.7.7
+gitver=v5.7.8
+pkgver=5.7.8
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -39,8 +39,8 @@ source=(
         # archlinux patches
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
         0002-PCI-EDR-Log-only-ACPI_NOTIFY_DISCONNECT_RECOVER-events.patch
-        0003-ALSA-usb-audio-Fix-packet-size-calculation.patch
-        0004-drm-amd-display-Only-revalidate-bandwidth-on-medium-and-fast-updates.patch
+        0003-Revert-ath9k-Fix-general-protection-fault-in-ath9k_hif_usb_rx_cb.patch
+        0004-iwlwifi-Make-some-Killer-Wireless-AC-1550-cards-working-again.patch
 )
 sha256sums=('SKIP'
             # config
@@ -64,8 +64,8 @@ sha256sums=('SKIP'
             # archlinux patches
             '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
             '69dfd528a2ad7a57a5036c9250a2f99dc815eef011cdc17c323c49affdb051de'
-            '863f4d199f333fbbba9d42c287b566050d3716bfbd5aed9acf1f3745f8df3a2f'
-            '495d52edab5e226d24aeb3467f5f31366cf268b0cdfa6ea714e162e01067a0eb' 
+            'c3d1a6d86ee212a8735d5d51e13d5c6ddbd7b24c591536e256d6353551c9e059'
+            'f8289aff15333d2d3f086a9602028113b001f01dc51dae9ad9701c45e0535b9f' 
 )
 
 _kernelname=${pkgbase#linux}
