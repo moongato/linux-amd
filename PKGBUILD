@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.9
-pkgver=5.7.9
+gitver=v5.7.10
+pkgver=5.7.10
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -40,7 +40,6 @@ source=(
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
         0002-PCI-EDR-Log-only-ACPI_NOTIFY_DISCONNECT_RECOVER-events.patch
         0003-iwlwifi-Make-some-Killer-Wireless-AC-1550-cards-working-again.patch
-        0004-virt-vbox-Add-support-for-the-new-VBG_IOCTL_ACQUIRE_GUEST_CAP.patch
 )
 sha256sums=('SKIP'
             # config
@@ -65,7 +64,6 @@ sha256sums=('SKIP'
             '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
             '69dfd528a2ad7a57a5036c9250a2f99dc815eef011cdc17c323c49affdb051de'
             'f8289aff15333d2d3f086a9602028113b001f01dc51dae9ad9701c45e0535b9f'
-            '095804fb1045f6ccb52825d0d8c3aad1237e919f30586034267918a15d1249f6'
 )
 
 _kernelname=${pkgbase#linux}
