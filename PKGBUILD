@@ -40,10 +40,11 @@ source=(
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
         0002-PCI-EDR-Log-only-ACPI_NOTIFY_DISCONNECT_RECOVER-events.patch
         0003-virt-vbox-Add-support-for-the-new-VBG_IOCTL_ACQUIRE_GUEST_CAP.patch
+        0004-drm-amd-display-Clear-dm_state-for-fast-updates.patch
 )
 sha256sums=('SKIP'
             # config
-            '283f7acab9a29fe2c1c02dcb35cd572e48a0874fec157868e1bfd52d02b88755'
+            'd13e21200f33c32b00f3a1069191f03cea507a10e661e668fef64ca7d4cc7c39'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
@@ -64,6 +65,7 @@ sha256sums=('SKIP'
             '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
             '69dfd528a2ad7a57a5036c9250a2f99dc815eef011cdc17c323c49affdb051de'
             'd3a4c90f485238a284ee9e301a7c8a400468dae5357c43412d842dcd4077c93a'
+            'db7514d46216b85e56a63fbd09be705f03ba32901e940c85caa85262c79c32e1'
 )
 
 _kernelname=${pkgbase#linux}
