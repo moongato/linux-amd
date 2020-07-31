@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.10
-pkgver=5.7.10
+gitver=v5.7.11
+pkgver=5.7.11
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -39,12 +39,12 @@ source=(
         # archlinux patches
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
         0002-PCI-EDR-Log-only-ACPI_NOTIFY_DISCONNECT_RECOVER-events.patch
-        0003-iwlwifi-Make-some-Killer-Wireless-AC-1550-cards-working-again.patch
-        0004-virt-vbox-Add-support-for-the-new-VBG_IOCTL_ACQUIRE_GUEST_CAP.patch
+        0003-virt-vbox-Add-support-for-the-new-VBG_IOCTL_ACQUIRE_GUEST_CAP.patch
+        0004-drm-amd-display-Clear-dm_state-for-fast-updates.patch
 )
 sha256sums=('SKIP'
             # config
-            '0e95960a5c158cdec122d6daec4585afe4ea84b5ebfc995e1db18d21e35c1c77'
+            '6d9b64672cc5068e0b0504cd529a3de0a5591acd68e717ab13f910728549bd0f'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
@@ -64,8 +64,8 @@ sha256sums=('SKIP'
             # archlinux patches
             '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
             '69dfd528a2ad7a57a5036c9250a2f99dc815eef011cdc17c323c49affdb051de'
-            'f8289aff15333d2d3f086a9602028113b001f01dc51dae9ad9701c45e0535b9f'
             'd3a4c90f485238a284ee9e301a7c8a400468dae5357c43412d842dcd4077c93a'
+            'db7514d46216b85e56a63fbd09be705f03ba32901e940c85caa85262c79c32e1'
 )
 
 _kernelname=${pkgbase#linux}
