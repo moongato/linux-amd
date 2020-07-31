@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.11
-pkgver=5.7.11
+gitver=v5.7.12
+pkgver=5.7.12
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -44,7 +44,7 @@ source=(
 )
 sha256sums=('SKIP'
             # config
-            '6d9b64672cc5068e0b0504cd529a3de0a5591acd68e717ab13f910728549bd0f'
+            '8ae339918f2de6705f3346c7e6ad19e24091fd2a16e04cf15bd41d080dfd41d7'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
