@@ -3,69 +3,69 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.12
-pkgver=5.7.12
+gitver=v5.8
+pkgver=5.8.0
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
-_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
+#_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
 #_bmq_patch="bmq_v5.6-r4.patch"
-_fsgsbase_path=fsgsbase-patches-v6
+_fsgsbase_path=fsgsbase-patches-v2
 _fsgsbase_patch=0001-fsgsbase-patches.patch
-_uksm_patch=uksm-5.7.patch
-source=(
-        'git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
+_uksm_patch=uksm-5.8.patch
+_bfq_rev_patch="0001-bfq-reverts.patch"
+_bfq_patch=5.8-bfq-dev-lucjan-v12-r2K200803.patch
+
+source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#tag=$gitver"
         # the main kernel config files
         config
         # standard config files for mkinitcpio ramdisk
         "${pkgbase}.preset"
 	# gcc patch
-	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.7+.patch
+	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.8+.patch
         # muqss patch
-        http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
+        #http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
         # bmq patch
         #https://gitlab.com/alfredchen/bmq/raw/master/5.7/${_bmq_patch}
         # fsgs patch
-        https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
+        https://github.com/sirlucjan/kernel-patches/raw/master/5.8/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
         # uksm patch
         https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
-        # unfuck muqss
-          "unfuck-ck1.patch::https://github.com/ckolivas/linux/commit/0b69e633d6b0b08ae8547dc4099c8c0985019553.patch"
+        # bfq patches
+        https://github.com/sirlucjan/kernel-patches/raw/master/5.8/bfq-reverts-all/${_bfq_rev_patch}
+        https://github.com/sirlucjan/kernel-patches/raw/master/5.8/bfq-dev-lucjan/${_bfq_patch}
         # archlinux patches
-        0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
-        0002-PCI-EDR-Log-only-ACPI_NOTIFY_DISCONNECT_RECOVER-events.patch
-        0003-virt-vbox-Add-support-for-the-new-VBG_IOCTL_ACQUIRE_GUEST_CAP.patch
-        0004-drm-amd-display-Clear-dm_state-for-fast-updates.patch
+        0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE.patch
+        0002-virt-vbox-Add-support-for-the-new-VBG_IOCTL_ACQUIRE_GUEST_CAP.patch
 )
 sha256sums=('SKIP'
             # config
-            '8ae339918f2de6705f3346c7e6ad19e24091fd2a16e04cf15bd41d080dfd41d7'
+            'SKIP'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
-            '1f56a2466bd9b4477925682d8f944fabb38727140e246733214fe50aa326fc47'
+            '8f0ac7129abece61f11b642167ca85450fd7d57d3b60e0675c2ea8497b4c7b84'
             # muqss patch
-            '8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
+            #'8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # bmq patch
             #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
             # fsgs patch
-            'd9a6c35b1e00013d2db427d06bca16fef99dfdbd5f4582b05c5266dbaed9460d'
+            '27345951e9cd308da8f70c6d0b57f11745a67c61c3df017f3eba6242b045e63b'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
             # uksm patch
-            'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
-            # unfuck muqss
-            '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328'
+            '0389c65d8357f8b22f65aceaf9ceda5a3c76e60ca34f713ff9a09ec379f51dc7'
+            # bfq patches
+            '88f691be0f82eb16718e0df1eea0a52759879e1677a0e1bb99ddec348040b0d2'
+            'b44c010348ba7ea446cabe1b8739852b6bb266b1b8b14c02ac9bdf7ba1aee4aa'
             # archlinux patches
-            '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
-            '69dfd528a2ad7a57a5036c9250a2f99dc815eef011cdc17c323c49affdb051de'
-            'd3a4c90f485238a284ee9e301a7c8a400468dae5357c43412d842dcd4077c93a'
-            'db7514d46216b85e56a63fbd09be705f03ba32901e940c85caa85262c79c32e1'
+            '49a2dd5231e2a492c7d31f165f679ea203e91fe12a472d3b0074f539d17caa63'
+            '754a7eb440e822584bb78f4662af87b03a00565b07319630e189de0e753a485b'
 )
 
 _kernelname=${pkgbase#linux}
@@ -76,8 +76,6 @@ pkgver() {
 
 prepare() {
   cd "${_srcname}"
-  #We want to base this on the release
-  git checkout tags/$gitver
   if [ "${CARCH}" = "x86_64" ]; then
     cat "${srcdir}/config" > ./.config
   else
@@ -125,7 +123,7 @@ build() {
 }
 
 _package() {
-  pkgdesc="Linux kernel for AMD CPU based hardware"
+  pkgdesc="Linux kernel aimed at the latest AMD CPU based hardware"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=('linux')
@@ -187,7 +185,7 @@ _package() {
 }
 
 _package-headers() {
-  pkgdesc="Header files and scripts for building modules for Linux kerel for AMD CPU based hardware"
+  pkgdesc="Header files and scripts for building modules for Linux kernel aimed at the latest AMD CPU based hardware"
   provides=('linux-headers')
 
   install -dm755 "${pkgdir}/usr/lib/modules/${_kernver}"
@@ -271,7 +269,9 @@ _package-headers() {
   done
 
   # remove unneeded architectures
-  rm -rf "${pkgdir}"/usr/lib/modules/${_kernver}/build/arch/{alpha,arc,arm,arm26,arm64,avr32,blackfin,c6x,cris,frv,h8300,hexagon,ia64,m32r,m68k,m68knommu,metag,mips,microblaze,mn10300,openrisc,parisc,powerpc,ppc,s390,score,sh,sh64,sparc,sparc64,tile,unicore32,um,v850,xtensa}
+  while read modarch; do
+   rm -rf $modarch
+  done <<< $(find "${pkgdir}"/usr/lib/modules/${_kernver}/build/arch/ -maxdepth 1 -mindepth 1 -type d | grep -v /x86$)
 
   #Fix missing vdso files after overhaul
   cp -r "include/vdso/" "${pkgdir}/usr/lib/modules/${_kernver}/build/include/"
