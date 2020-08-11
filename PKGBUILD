@@ -12,7 +12,7 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 #_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
-#_bmq_patch="bmq_v5.6-r4.patch"
+_prjc_patch="prjc_v5.8-r0.patch"
 _fsgsbase_path=fsgsbase-patches-v2
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 _uksm_patch=uksm-5.8.patch
@@ -28,8 +28,8 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#ta
 	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.8+.patch
         # muqss patch
         #http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
-        # bmq patch
-        #https://gitlab.com/alfredchen/bmq/raw/master/5.7/${_bmq_patch}
+        # project-c patch
+        https://gitlab.com/alfredchen/projectc/-/raw/master/5.8/${_prjc_patch}
         # fsgs patch
         https://github.com/sirlucjan/kernel-patches/raw/master/5.8/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
@@ -52,8 +52,8 @@ sha256sums=('SKIP'
             '8f0ac7129abece61f11b642167ca85450fd7d57d3b60e0675c2ea8497b4c7b84'
             # muqss patch
             #'8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
-            # bmq patch
-            #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
+            # project-c patch
+            'fc419a83cc69118d1fd517f86ce47593db8837d6546a2553002a46ee3453237b'
             # fsgs patch
             '27345951e9cd308da8f70c6d0b57f11745a67c61c3df017f3eba6242b045e63b'
             # O3 patch
