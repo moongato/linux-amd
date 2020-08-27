@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.8.2
-pkgver=5.8.2
+gitver=v5.8.5
+pkgver=5.8.5
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -12,12 +12,12 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 #_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
-_prjc_patch="prjc_v5.8-r0.patch"
+_prjc_patch="prjc_v5.8-r1.patch"
 _fsgsbase_path=fsgsbase-patches-v2
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 _uksm_patch=uksm-5.8.patch
 _bfq_rev_patch="0001-bfq-reverts.patch"
-_bfq_patch=5.8-bfq-dev-lucjan-v12-r2K200803.patch
+_bfq_patch=5.8-bfq-dev-lucjan-v12-r2K200819.patch
 
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#tag=$gitver"
         # the main kernel config files
@@ -45,7 +45,7 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#ta
 )
 sha256sums=('SKIP'
             # config
-            'SKIP'
+            '2e3bcaec7ff50900d9db2c914470642057ac088bddc153c7211a09eef9ac4acb'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
@@ -53,7 +53,7 @@ sha256sums=('SKIP'
             # muqss patch
             #'8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # project-c patch
-            'fc419a83cc69118d1fd517f86ce47593db8837d6546a2553002a46ee3453237b'
+            '1656a20d3bab28c72e004778f77e880bba8d02eba8d18a81558cdc9d6733b1f1'
             # fsgs patch
             '27345951e9cd308da8f70c6d0b57f11745a67c61c3df017f3eba6242b045e63b'
             # O3 patch
@@ -62,7 +62,7 @@ sha256sums=('SKIP'
             '0389c65d8357f8b22f65aceaf9ceda5a3c76e60ca34f713ff9a09ec379f51dc7'
             # bfq patches
             '88f691be0f82eb16718e0df1eea0a52759879e1677a0e1bb99ddec348040b0d2'
-            'b44c010348ba7ea446cabe1b8739852b6bb266b1b8b14c02ac9bdf7ba1aee4aa'
+            '1578a40f6a44c7d02b4d8ba07de8543177c13890595dfffc34cf57ef0e5df0d1'
             # archlinux patches
             '49a2dd5231e2a492c7d31f165f679ea203e91fe12a472d3b0074f539d17caa63'
             '754a7eb440e822584bb78f4662af87b03a00565b07319630e189de0e753a485b'
@@ -98,9 +98,11 @@ prepare() {
   done
 
   # get kernel version
+  msg2 "Preparing kernel"
   yes "" | make prepare
 
   # load configuration
+  msg2 "Preparing config"
   # Configure the kernel. Replace the line below with one of your choice.
   #make menuconfig # CLI menu for configuration
   #make nconfig # new CLI menu for configuration
