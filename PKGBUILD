@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.8.7
-pkgver=5.8.7
+gitver=v5.8.10
+pkgver=5.8.10
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -12,12 +12,12 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 #_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
-_prjc_patch="prjc_v5.8-r1.patch"
+_prjc_patch="0009-prjc_v5.8-r3.patch"
 _fsgsbase_path=fsgsbase-patches-v2
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 _uksm_patch=uksm-5.8.patch
 _bfq_rev_patch="0001-bfq-reverts.patch"
-_bfq_patch=5.8-bfq-dev-lucjan-v12-r2K200819.patch
+_bfq_patch=5.8-bfq-dev-lucjan-v12-r2K200909.patch
 
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#tag=$gitver"
         # the main kernel config files
@@ -29,7 +29,8 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#ta
         # muqss patch
         #http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
         # project-c patch
-        https://gitlab.com/alfredchen/projectc/-/raw/master/5.8/${_prjc_patch}
+        #https://gitlab.com/alfredchen/projectc/-/raw/master/5.8/${_prjc_patch}
+        https://github.com/Frogging-Family/linux-tkg/raw/master/linux58-tkg/linux58-tkg-patches/${_prjc_patch}
         # fsgs patch
         https://github.com/sirlucjan/kernel-patches/raw/master/5.8/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
@@ -45,7 +46,7 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#ta
 )
 sha256sums=('SKIP'
             # config
-            'fea77b16334d41b83dbcb666383d35e70fdfd92edbe5c87162cc4e10fc6a5585'
+            'a6a3a10806865cfb74afdf95ddb892ddca834b659e29d2310837bcac7b9814df'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
@@ -53,7 +54,7 @@ sha256sums=('SKIP'
             # muqss patch
             #'8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # project-c patch
-            '1656a20d3bab28c72e004778f77e880bba8d02eba8d18a81558cdc9d6733b1f1'
+            'f5dbff4833a2e3ca94c202e5197894d5f1006c689ff149355353e77d2e17c943'
             # fsgs patch
             '27345951e9cd308da8f70c6d0b57f11745a67c61c3df017f3eba6242b045e63b'
             # O3 patch
@@ -62,7 +63,7 @@ sha256sums=('SKIP'
             '0389c65d8357f8b22f65aceaf9ceda5a3c76e60ca34f713ff9a09ec379f51dc7'
             # bfq patches
             '6e7785ac437243165302b889a3bc0cdcdfc25aa1090e2f876fe60b624f6cb872'
-            '1578a40f6a44c7d02b4d8ba07de8543177c13890595dfffc34cf57ef0e5df0d1'
+            '8ea5870b7e0f7be60e859d112f54554c8c2b84b0f9069603ec5e91c2ebe3efd7'
             # archlinux patches
             '49a2dd5231e2a492c7d31f165f679ea203e91fe12a472d3b0074f539d17caa63'
             '754a7eb440e822584bb78f4662af87b03a00565b07319630e189de0e753a485b'
