@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.8.10
-pkgver=5.8.10
+gitver=v5.8.11
+pkgver=5.8.11
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -17,7 +17,7 @@ _fsgsbase_path=fsgsbase-patches-v2
 _fsgsbase_patch=0001-fsgsbase-patches.patch
 _uksm_patch=uksm-5.8.patch
 _bfq_rev_patch="0001-bfq-reverts.patch"
-_bfq_patch=5.8-bfq-dev-lucjan-v12-r2K200909.patch
+_bfq_patch=5.8-bfq-dev-lucjan-v13-r2K200922.patch
 
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#tag=$gitver"
         # the main kernel config files
@@ -38,7 +38,7 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#ta
         # uksm patch
         https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
         # bfq patches
-        https://github.com/sirlucjan/kernel-patches/raw/master/5.8/bfq-reverts-v2-all/${_bfq_rev_patch}
+        https://github.com/sirlucjan/kernel-patches/raw/master/5.8/bfq-reverts-v3-all/${_bfq_rev_patch}
         https://github.com/sirlucjan/kernel-patches/raw/master/5.8/bfq-dev-lucjan/${_bfq_patch}
         # archlinux patches
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE.patch
@@ -62,8 +62,8 @@ sha256sums=('SKIP'
             # uksm patch
             '0389c65d8357f8b22f65aceaf9ceda5a3c76e60ca34f713ff9a09ec379f51dc7'
             # bfq patches
-            '6e7785ac437243165302b889a3bc0cdcdfc25aa1090e2f876fe60b624f6cb872'
-            '8ea5870b7e0f7be60e859d112f54554c8c2b84b0f9069603ec5e91c2ebe3efd7'
+            'c61390441d8e06e1f903ad7ff2160d9e72f1d3b7c57d5cf9919de1aceb3adef5'
+            '40f5ca1c854db83738f48628f7abc0494f0cbf8aff18d72f220f3000be593439'
             # archlinux patches
             '49a2dd5231e2a492c7d31f165f679ea203e91fe12a472d3b0074f539d17caa63'
             '754a7eb440e822584bb78f4662af87b03a00565b07319630e189de0e753a485b'
