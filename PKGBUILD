@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.8.14
-pkgver=5.8.14
+gitver=v5.9
+pkgver=5.9
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -12,12 +12,7 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 #_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
-_prjc_patch="0009-prjc_v5.8-r3.patch"
-_fsgsbase_path=fsgsbase-patches-v2
-_fsgsbase_patch=0001-fsgsbase-patches.patch
-_uksm_patch=uksm-5.8.patch
-_bfq_rev_patch="0001-bfq-reverts.patch"
-_bfq_patch=5.8-bfq-dev-lucjan-v13-r2K200929.patch
+_prjc_patch="0009-prjc_v5.9-r0.patch"
 
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#tag=$gitver"
         # the main kernel config files
@@ -30,23 +25,15 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#ta
         #http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
         # project-c patch
         #https://gitlab.com/alfredchen/projectc/-/raw/master/5.8/${_prjc_patch}
-        https://github.com/Frogging-Family/linux-tkg/raw/master/linux58-tkg/linux58-tkg-patches/${_prjc_patch}
-        # fsgs patch
-        https://github.com/sirlucjan/kernel-patches/raw/master/5.8/${_fsgsbase_path}/${_fsgsbase_patch}
+        https://github.com/Frogging-Family/linux-tkg/raw/master/linux59-tkg/linux59-tkg-patches/${_prjc_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
-        # uksm patch
-        https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
-        # bfq patches
-        https://github.com/sirlucjan/kernel-patches/raw/master/5.8/bfq-reverts-v3-all/${_bfq_rev_patch}
-        https://github.com/sirlucjan/kernel-patches/raw/master/5.8/bfq-dev-lucjan/${_bfq_patch}
         # archlinux patches
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE.patch
-        0002-virt-vbox-Add-support-for-the-new-VBG_IOCTL_ACQUIRE_GUEST_CAP.patch
 )
 sha256sums=('SKIP'
             # config
-            'a6a3a10806865cfb74afdf95ddb892ddca834b659e29d2310837bcac7b9814df'
+            '22339fafdf5cdbfa2015f99af232a43b742956a62a59ab8163e36c1ec5e3030f'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
@@ -54,19 +41,11 @@ sha256sums=('SKIP'
             # muqss patch
             #'8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # project-c patch
-            'f5dbff4833a2e3ca94c202e5197894d5f1006c689ff149355353e77d2e17c943'
-            # fsgs patch
-            '27345951e9cd308da8f70c6d0b57f11745a67c61c3df017f3eba6242b045e63b'
+            '88c7e308e474c845e0cc09e09bd223fc39876eca757abf6d6c3b8321f49ce1f1'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
-            # uksm patch
-            '0389c65d8357f8b22f65aceaf9ceda5a3c76e60ca34f713ff9a09ec379f51dc7'
-            # bfq patches
-            'c61390441d8e06e1f903ad7ff2160d9e72f1d3b7c57d5cf9919de1aceb3adef5'
-            'b3dba3f218da55118482c2b9b9519d3509b057f5312189cffbe08a7d03d7fbc2'
             # archlinux patches
             '49a2dd5231e2a492c7d31f165f679ea203e91fe12a472d3b0074f539d17caa63'
-            '754a7eb440e822584bb78f4662af87b03a00565b07319630e189de0e753a485b'
 )
 
 _kernelname=${pkgbase#linux}
