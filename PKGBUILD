@@ -3,16 +3,16 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.9
-pkgver=5.9
-pkgrel=1
+gitver=v5.9.1
+pkgver=5.9.1
+pkgrel=2
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
 #_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
-_prjc_patch="0009-prjc_v5.9-r0.patch"
+_prjc_patch="prjc_v5.9-r1.patch"
 
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#tag=$gitver"
         # the main kernel config files
@@ -24,16 +24,18 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#ta
         # muqss patch
         #http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
         # project-c patch
-        #https://gitlab.com/alfredchen/projectc/-/raw/master/5.8/${_prjc_patch}
-        https://github.com/Frogging-Family/linux-tkg/raw/master/linux59-tkg/linux59-tkg-patches/${_prjc_patch}
+        https://gitlab.com/alfredchen/projectc/-/raw/master/5.9/${_prjc_patch}
+        #https://github.com/Frogging-Family/linux-tkg/raw/master/linux59-tkg/linux59-tkg-patches/${_prjc_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
         # archlinux patches
         0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE.patch
+        0002-i2c-core-Restore-acpi_walk_dep_device_list-getting-called-after-registering-the-ACPI.patch
+        sched-alt-Fix-compilation-when-NR_CPUS-over-64.patch
 )
 sha256sums=('SKIP'
             # config
-            '22339fafdf5cdbfa2015f99af232a43b742956a62a59ab8163e36c1ec5e3030f'
+            '94498915816175d195876626208292d85a5406f77ea5915495e989724febbd06'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
@@ -41,12 +43,15 @@ sha256sums=('SKIP'
             # muqss patch
             #'8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
             # project-c patch
-            '88c7e308e474c845e0cc09e09bd223fc39876eca757abf6d6c3b8321f49ce1f1'
+            'a18dee6e4eeb677adef61b4e695cbb800a9aa88e3f6673a6dcfef8a840dee0cc'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
             # archlinux patches
             '49a2dd5231e2a492c7d31f165f679ea203e91fe12a472d3b0074f539d17caa63'
-)
+            'e06508b783c3aecbe4048cae75ea1edbebc9bd18c247d4d252fdea628ea735f6'
+            # project-c compilation fix
+            '7cc22759cb74e884b2dcd603d760adb451fd1f2e5d24d472c32811b254566b7a'
+)          
 
 _kernelname=${pkgbase#linux}
 
