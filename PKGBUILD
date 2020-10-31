@@ -3,19 +3,16 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.7.6
-pkgver=5.7.6
-pkgrel=3
+gitver=v5.9.2
+pkgver=5.9.2
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'libelf')
 options=('!strip')
-_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.202.patch
+_muqss_patch=0001-MultiQueue-Skiplist-Scheduler-v0.204.patch
 #_bmq_patch="bmq_v5.6-r4.patch"
-_fsgsbase_path=fsgsbase-patches-v5
-_fsgsbase_patch=0001-fsgsbase-patches.patch
-_uksm_patch=uksm-5.7.patch
 source=(
         'git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git'
         # the main kernel config files
@@ -23,45 +20,33 @@ source=(
         # standard config files for mkinitcpio ramdisk
         "${pkgbase}.preset"
 	# gcc patch
-	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.7+.patch
+	enable_additional_cpu_optimizations_for_gcc_v10.1+_kernel_v5.8+.patch
         # muqss patch
-        http://ck.kolivas.org/patches/muqss/5.0/5.7/${_muqss_patch}
+        http://ck.kolivas.org/patches/muqss/5.0/5.9/${_muqss_patch}
         # bmq patch
         #https://gitlab.com/alfredchen/bmq/raw/master/5.7/${_bmq_patch}
-        # fsgs patch
-        https://github.com/sirlucjan/kernel-patches/raw/master/5.7/${_fsgsbase_path}/${_fsgsbase_patch}
         # -O3 for all arches patch
         0001-init-Kconfig-enable-O3-for-all-arches.patch
-        # uksm patch
-        https://github.com/dolohow/uksm/raw/master/v5.x/${_uksm_patch}
-        # unfuck muqss
-          "unfuck-ck1.patch::https://github.com/ckolivas/linux/commit/0b69e633d6b0b08ae8547dc4099c8c0985019553.patch"
         # archlinux patches
-        0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
-        0002-efi-libstub-Fix-path-separator-regression.patch
+        0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE.patch
+        0002-mac80211-fix-regression-where-EAPOL-frames-were-sent-in-plaintext.patch
 )
 sha256sums=('SKIP'
             # config
-            '0e95960a5c158cdec122d6daec4585afe4ea84b5ebfc995e1db18d21e35c1c77'
+            'b4fbf6ccfab7d7aec7466ec259c3d158a6447504897da4409d5a14f8155f7f6b'
             # .preset file
             '71caf34adf69e9e2567a38cfc951d1c60b13dbe87f58a9acfeb3fe48ffdc9d08'
             # gcc patch
-            '1f56a2466bd9b4477925682d8f944fabb38727140e246733214fe50aa326fc47'
+            '8f0ac7129abece61f11b642167ca85450fd7d57d3b60e0675c2ea8497b4c7b84'
             # muqss patch
-            '8ab5ddbbee13d271af93eb4cd00434fcb4f0444968b1b865ad30dab16c833bf7'
+            '39d2a3d01523c937abbc1ef3f9c7074a13682571769361a475fdf421060e3ef4'
             # bmq patch
             #'1b95d36635c7dc48ce45a33d6b1f4eb6d34f51600901395d28fd22f28daee8e9'
-            # fsgs patch
-            '2e0e8413302c2b6cd4e7ee6960198eb0cd9cc3e80c52b6f14054a196f0f48984'
             # O3 patch
             'de912c6d0de05187fd0ecb0da67326bfde5ec08f1007bea85e1de732e5a62619'
-            # uksm patch
-            'c28dc0d30bba3eedae9f5cf98a686bdfb25a0326df4e8c417d37a36597d21b37'
-            # unfuck muqss
-            '5a08ac04975fe784d16d6c8ec2be733c73cdcfc19795f5c7b97d7a1aa7f12328'
             # archlinux patches
-            '211d7bcd02f146b28daecfeff410c66834b8736de1cad09158f8ec9ecccdcca6'
-            '6576ee1bf82c8d78b9e60b48fadc6b875cf9473917e57282db2fa6c6047548e9'
+            '49a2dd5231e2a492c7d31f165f679ea203e91fe12a472d3b0074f539d17caa63'
+            '8dc9a19c75835b5eb903384295c2d9e17ef7d7ff61f4fed3f4db2c299ab0ca2c'
 )
 
 _kernelname=${pkgbase#linux}
@@ -72,8 +57,6 @@ pkgver() {
 
 prepare() {
   cd "${_srcname}"
-  #We want to base this on the release
-  git checkout tags/$gitver
   if [ "${CARCH}" = "x86_64" ]; then
     cat "${srcdir}/config" > ./.config
   else
@@ -96,9 +79,11 @@ prepare() {
   done
 
   # get kernel version
+  msg2 "Preparing kernel"
   yes "" | make prepare
 
   # load configuration
+  msg2 "Preparing config"
   # Configure the kernel. Replace the line below with one of your choice.
   #make menuconfig # CLI menu for configuration
   #make nconfig # new CLI menu for configuration
@@ -121,7 +106,7 @@ build() {
 }
 
 _package() {
-  pkgdesc="Linux kernel for AMD CPU based hardware"
+  pkgdesc="Linux kernel aimed at the latest AMD CPU based hardware"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=('linux')
@@ -183,7 +168,7 @@ _package() {
 }
 
 _package-headers() {
-  pkgdesc="Header files and scripts for building modules for Linux kerel for AMD CPU based hardware"
+  pkgdesc="Header files and scripts for building modules for Linux kernel aimed at the latest AMD CPU based hardware"
   provides=('linux-headers')
 
   install -dm755 "${pkgdir}/usr/lib/modules/${_kernver}"
@@ -267,7 +252,9 @@ _package-headers() {
   done
 
   # remove unneeded architectures
-  rm -rf "${pkgdir}"/usr/lib/modules/${_kernver}/build/arch/{alpha,arc,arm,arm26,arm64,avr32,blackfin,c6x,cris,frv,h8300,hexagon,ia64,m32r,m68k,m68knommu,metag,mips,microblaze,mn10300,openrisc,parisc,powerpc,ppc,s390,score,sh,sh64,sparc,sparc64,tile,unicore32,um,v850,xtensa}
+  while read modarch; do
+   rm -rf $modarch
+  done <<< $(find "${pkgdir}"/usr/lib/modules/${_kernver}/build/arch/ -maxdepth 1 -mindepth 1 -type d | grep -v /x86$)
 
   #Fix missing vdso files after overhaul
   cp -r "include/vdso/" "${pkgdir}/usr/lib/modules/${_kernver}/build/include/"
