@@ -3,8 +3,8 @@
 
 pkgbase=linux-amd
 _srcname=linux
-gitver=v5.9.2
-pkgver=5.9.2
+gitver=v5.9.3
+pkgver=5.9.3
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
